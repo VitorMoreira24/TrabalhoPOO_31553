@@ -47,7 +47,7 @@ namespace TrabalhoPOO_31553
 
             Console.WriteLine($"\nCheck-in registado para a reserva #{checkin.ReservaId} às {checkin.HoraCheckIn:HH:mm}");
 
-            // 5️ Registar uma consulta
+            // 5️ Registar uma consultas
             consultas consulta = new consultas(
                 idRegisto: 20,
                 dataRegisto: DateTime.Now,

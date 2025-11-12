@@ -13,15 +13,15 @@ namespace TrabalhoPOO_31553
         {
             Console.WriteLine("=== Teste de Gestão de Alojamentos ===\n");
 
-            // 1️⃣ Criar um cliente
+            // 1️ Criar um cliente
             clientes cliente = new clientes(1, "João Silva", "joao@gmail.com", "912345678");
             Console.WriteLine($"Cliente criado: {cliente.Nome} ({cliente.Email})");
 
-            // 2️⃣ Criar um alojamento
+            // 2️ Criar um alojamento
             alojamentos alojamento = new alojamentos(1, "Casa da Praia", "Albufeira", 120);
             Console.WriteLine($"Alojamento criado: {alojamento.Nome} - {alojamento.Localizacao} - {alojamento.PrecoPorNoite}€/noite");
 
-            // 3️⃣ Criar uma reserva
+            // 3️ Criar uma reserva
             reservas reserva = new reservas(
                 idRegisto: 1,
                 dataRegisto: DateTime.Now,
@@ -36,7 +36,7 @@ namespace TrabalhoPOO_31553
             Console.WriteLine($"Check-in planeado: {reserva.DataCheckIn:dd/MM/yyyy}");
             Console.WriteLine($"Check-out planeado: {reserva.DataCheckOut:dd/MM/yyyy}");
 
-            // 4️⃣ Fazer um check-in
+            // 4️ Fazer um check-in
             checkin checkin = new checkin(
                 idRegisto: 10,
                 dataRegisto: DateTime.Now,
@@ -47,7 +47,7 @@ namespace TrabalhoPOO_31553
 
             Console.WriteLine($"\nCheck-in registado para a reserva #{checkin.ReservaId} às {checkin.HoraCheckIn:HH:mm}");
 
-            // 5️⃣ Registar uma consulta
+            // 5️ Registar uma consulta
             consultas consulta = new consultas(
                 idRegisto: 20,
                 dataRegisto: DateTime.Now,

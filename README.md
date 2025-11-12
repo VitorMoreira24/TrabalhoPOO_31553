@@ -1,6 +1,6 @@
 # TRABALHO_POO_31553
 
-Licenciatura em Engenharia de Sistemas Informáticos 20225-26 (**laboral**)
+Licenciatura em Engenharia de Sistemas Informáticos 2025-26 (**laboral**)
 
 Programação Orientada a Objetos 
 

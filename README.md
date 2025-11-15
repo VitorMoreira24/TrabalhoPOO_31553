@@ -12,7 +12,7 @@ Programação Orientada a Objetos
 
 [TrabalhoPOO_31553/](./TrabalhoPOO_31553/)  Código da solução desenvolvida 
 
-[doc/](.doc/)  documentação gerado pela ferramenta Doxygen
+[doc/](.doc/)  Acesso ao Relatório
 
 ## Download do Projeto
 

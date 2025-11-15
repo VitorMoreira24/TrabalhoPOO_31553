@@ -67,7 +67,7 @@ namespace TrabalhoPOO_31553
 
         /** Propriedade DescricaoRegisto
          * get: Retorna a descricao do registo
-         * set: Define a descricao do registo
+         * set: Define a descricao do registoo
          */
         public string DescricaoRegisto
         {

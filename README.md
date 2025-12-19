@@ -20,7 +20,9 @@ Código da solução desenvolvida:
 
 [teste/](./teste/) 
 
-[doc/](.doc/)  Acesso ao Relatório
+Acesso ao Relatório:
+
+[doc/](.doc/) 
 
 ## Download do Projeto
 

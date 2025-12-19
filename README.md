@@ -10,7 +10,10 @@ Programação Orientada a Objetos
 
 ## Organização
 
-[TrabalhoPOO_31553/](./TrabalhoPOO_31553/)  Código da solução desenvolvida 
+[GestaoAlojamentos.DA/](./GestaoAlojamentos.DA/)  Código da solução desenvolvida 
+[GestaoAlojamentos.BO/](./GestaoAlojamentos.BO/)
+[GestaoAlojamentos.Controller/](./GestaoAlojamentos.Controller/)
+[teste/](./teste/) 
 
 [doc/](.doc/)  Acesso ao Relatório
 

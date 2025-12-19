@@ -45,6 +45,7 @@
     <Compile Include="checkin.cs" />
     <Compile Include="clientes.cs" />
     <Compile Include="consultas.cs" />
+    <Compile Include="Pessoa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="registos.cs" />
     <Compile Include="reservas.cs" />

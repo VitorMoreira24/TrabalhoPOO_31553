@@ -10,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TrabalhoPOO_31553
+namespace GestaoAlojamentos.DA
 {
-    public class reservas : registos
+    public class reservas
     {
         #region Atributos
 
@@ -40,7 +40,7 @@ namespace TrabalhoPOO_31553
          * this: Refere-se aos atributos da classe reservas
          */
         public reservas(int idRegisto, DateTime dataRegisto, string descricaoRegisto,
-                        int clienteId, int alojamentoId, 
+                        int clienteId, int alojamentoId,
                         DateTime dataCheckIn, DateTime dataCheckOut)
             : base(idRegisto, dataRegisto, descricaoRegisto)
         {
@@ -79,7 +79,7 @@ namespace TrabalhoPOO_31553
          */
         public DateTime DataCheckIn
         {
-            get { return dataCheckIn; } 
+            get { return dataCheckIn; }
             set { dataCheckIn = value; }
 
         }
@@ -87,8 +87,9 @@ namespace TrabalhoPOO_31553
          * get: Retorna a data de check-out
          * set: Define a data de check-out
          */
-        public DateTime DataCheckOut { 
-            get { return dataCheckOut; } 
+        public DateTime DataCheckOut
+        {
+            get { return dataCheckOut; }
             set { dataCheckOut = value; }
         }
 

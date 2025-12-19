@@ -10,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TrabalhoPOO_31553
+namespace GestaoAlojamentos.DA
 {
-    public class checkin : registos
+    public class checkin
     {
         #region Atributos
 
@@ -63,7 +63,7 @@ namespace TrabalhoPOO_31553
          */
         public DateTime HoraCheckIn
         {
-            get { return horaCheckIn; } 
+            get { return horaCheckIn; }
             set { horaCheckIn = value; }
 
         }

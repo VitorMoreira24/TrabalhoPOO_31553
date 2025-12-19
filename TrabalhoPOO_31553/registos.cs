@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TrabalhoPOO_31553
+namespace GestaoAlojamentos.DA
 {
     public abstract class registos
     {

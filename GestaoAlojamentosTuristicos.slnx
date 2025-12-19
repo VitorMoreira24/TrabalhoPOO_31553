@@ -1,4 +1,6 @@
 <Solution>
-  <Project Path="teste/teste.csproj" />
-  <Project Path="TrabalhoPOO_31553/TrabalhoPOO_31553.csproj" Id="a8671906-eef6-4f8f-9e65-0218441fe49e" />
+  <Project Path="GestaoAjolamentos.Controller/GestaoAjolamentos.Controller.csproj" Id="4212bf30-432e-4c50-89ca-245bab334963" />
+  <Project Path="GestaoAlojamentos.BO/GestaoAlojamentos.BO.csproj" Id="31608e4c-29ac-4e4f-9c76-11daebd5e29b" />
+  <Project Path="GestaoAlojamentos.DA/GestaoAlojamentos.DA.csproj" Id="c1f4210b-7569-49aa-8ade-148f51276aeb" />
+  <Project Path="teste/GestaoAlojamentos.App.csproj" />
 </Solution>

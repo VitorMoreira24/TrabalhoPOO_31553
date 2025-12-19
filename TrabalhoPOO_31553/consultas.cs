@@ -10,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TrabalhoPOO_31553
+namespace GestaoAlojamentos.DA
 {
-    public class consultas : registos
+    public class consultas
     {
         #region Atributos
 
@@ -62,7 +62,7 @@ namespace TrabalhoPOO_31553
          */
         public string ResultadoConsulta
         {
-            get { return resultadoConsulta; } 
+            get { return resultadoConsulta; }
             set { resultadoConsulta = value; }
         }
 

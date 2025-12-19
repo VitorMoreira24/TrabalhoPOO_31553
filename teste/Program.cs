@@ -1,66 +1,73 @@
-﻿using TrabalhoPOO_31553;  // importa o namespace onde estão as tuas classes
+﻿/**
+* Trabalho de POO
+* @author Vitor Moreira - 31553
+* @version 1.0
+* Classe principal da aplicação
+*/
+
+// Importa o namespace do Controller
+using GestaoAlojamentos.Controller;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TrabalhoPOO_31553
+namespace GestaoAlojamentos.App
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("=== Teste de Gestão de Alojamentos ===\n");
+            // Instancia o controlador do hotel
+            var controller = new HotelController();
 
-            // 1️ Criar um cliente
-            clientes cliente = new clientes(1, "João Silva", "joao@gmail.com", "912345678");
-            Console.WriteLine($"Cliente criado: {cliente.Nome} ({cliente.Email})");
+            Console.WriteLine($"Bem-vindo ao sistema de gestão do {controller.GereHotel().Nome}!");
+            Console.WriteLine("--------------------------------------------");
 
-            // 2️ Criar um alojamento
-            alojamentos alojamento = new alojamentos(1, "Casa da Praia", "Albufeira", 120);
-            Console.WriteLine($"Alojamento criado: {alojamento.Nome} - {alojamento.Localizacao} - {alojamento.PrecoPorNoite}€/noite");
+            // 1. REGISTAR NOVO CLIENTE
+            Console.WriteLine("REGISTO DE CLIENTE:");
 
-            // 3️ Criar uma reserva
-            reservas reserva = new reservas(
-                idRegisto: 1,
-                dataRegisto: DateTime.Now,
-                descricaoRegisto: "Reserva de 3 noites",
-                clienteId: cliente.Id,
-                alojamentoId: alojamento.Id,
-                dataCheckIn: new DateTime(2025, 11, 15),
-                dataCheckOut: new DateTime(2025, 11, 18)
-            );
+            // Regista um novo cliente chamando a funcao do Controlador
+            if (controller.RegistarCliente("Carlos Santos", "999888777"))
+            {
+                Console.WriteLine("-> Cliente registado com sucesso.");
+            }
 
-            Console.WriteLine($"\nReserva criada: ID={reserva.IdRegisto}, Cliente={reserva.ClienteId}, Alojamento={reserva.AlojamentoId}");
-            Console.WriteLine($"Check-in planeado: {reserva.DataCheckIn:dd/MM/yyyy}");
-            Console.WriteLine($"Check-out planeado: {reserva.DataCheckOut:dd/MM/yyyy}");
+            // 2. CONSULTAR DISPONIBILIDADE
+            Console.WriteLine("\nCONSULTA DE ALOJAMENTOS DISPONÍVEIS:");
 
-            // 4️ Fazer um check-in
-            checkin checkin = new checkin(
-                idRegisto: 10,
-                dataRegisto: DateTime.Now,
-                descricaoRegisto: "Check-in efetuado",
-                reservaId: reserva.IdRegisto,
-                horaCheckIn: DateTime.Now
-            );
+            // Chama a funcao do Controlador para obter a lista de alojamentos disponiveis
+            var disponiveis = controller.MostrarDisponiveis();
 
-            Console.WriteLine($"\nCheck-in registado para a reserva #{checkin.ReservaId} às {checkin.HoraCheckIn:HH:mm}");
+            // Mostra os alojamentos disponiveis (REVER)
+            disponiveis.ForEach(a => Console.WriteLine($"-> ID: {a.AlojamentoId}, Tipo: {a.Tipo}"));
 
-            // 5️ Registar uma consultas
-            consultas consulta = new consultas(
-                idRegisto: 20,
-                dataRegisto: DateTime.Now,
-                descricaoRegisto: "Consulta de reservas do cliente João",
-                tipoConsulta: "Reservas",
-                resultadoConsulta: "1 reserva encontrada"
-            );
+            int idParaCheckIn = disponiveis.First().AlojamentoId; // Usamos o primeiro disponível
 
-            Console.WriteLine($"\nConsulta registada:");
-            Console.WriteLine($"Tipo: {consulta.TipoConsulta}");
-            Console.WriteLine($"Resumo: {consulta.ResultadoConsulta}");
+            // 3. EFETUAR CHECK-IN
+            Console.WriteLine($"\nPROCESSAR CHECK-IN para o Alojamento ID {idParaCheckIn}:");
 
-            Console.WriteLine("\n=== Teste concluído ===");
+            // Chama a funcao do Controlador para processar o check-in
+            if (controller.ProcessarCheckIn(idParaCheckIn, "999888777"))
+            {
+                Console.WriteLine($"-> Check-in efetuado com sucesso! Alojamento {idParaCheckIn} está agora Alugado.");
+            }
+            else
+            {
+                Console.WriteLine($"-> ERRO ao efetuar Check-in (Verifique o estado ou NIF).");
+            }
+
+            // 4. EFETUAR CHECK-OUT
+            Console.WriteLine($"\nPROCESSAR CHECK-OUT para o Alojamento ID {idParaCheckIn}:");
+
+            // Chama a funcao do Controlador para processar o check-out
+            if (controller.ProcessarCheckOut(idParaCheckIn))
+            {
+                Console.WriteLine($"-> Check-out efetuado com sucesso! Alojamento {idParaCheckIn} está novamente Disponivel.");
+            }
+
+            Console.WriteLine("\nFim da simulação.");
         }
     }
 }

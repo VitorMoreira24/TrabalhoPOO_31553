@@ -10,7 +10,8 @@ Programação Orientada a Objetos
 
 ## Organização
 
-[GestaoAlojamentos.DA/](./GestaoAlojamentos.DA/)  Código da solução desenvolvida 
+Código da solução desenvolvida:
+[GestaoAlojamentos.DA/](./GestaoAlojamentos.DA/) 
 [GestaoAlojamentos.BO/](./GestaoAlojamentos.BO/)
 [GestaoAlojamentos.Controller/](./GestaoAlojamentos.Controller/)
 [teste/](./teste/) 

@@ -26,7 +26,7 @@ Acesso ao Relatório:
 
 ## Download do Projeto
 
-Para aceder ao downlaod da fase final, a partir do repositório GITHUB realizar o download do ficheiro "TrabalhoPOO_31553.zip"
+Para aceder ao downlaod da fase final, a partir do repositório GITHUB realizar o download do ficheiro "TrabalhoPOO_31553_fase2.zip"
 
 ## Compilação do Programa
 

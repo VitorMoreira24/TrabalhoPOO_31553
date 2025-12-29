@@ -6,6 +6,7 @@
 */
 
 using GestaoAlojamentos.DA;
+using GestaoAlojamentos.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -29,24 +30,18 @@ namespace GestaoAlojamentos.BO
         #region Methods
         #region OtherMethods
 
-        // Efetuar Check-in: Reservado/Disponivel -> Alugado: insere em Registos
+        // Efetuar Check-in: Reservado/Disponivel -> Alugado: insere em Registoss
         public bool EfetuarCheckIn(int alojamentoId, string clienteNif)
         {
-            //Procura Alojamento e Cliente
             var alojamento = Alojamento.ProcurarPorId(alojamentoId);
             var cliente = Pessoas.ProcurarClientePorNif(clienteNif);
 
-            // Regras de Negócio
-            if (alojamento == null || cliente == null || alojamento.Estado == "Alugado") return false;
+            if (alojamento == null) throw new AlojamentoNaoEncontradoException(alojamentoId);
+            if (cliente == null) throw new Exception("Cliente não encontrado.");
+            if (alojamento.Estado == "Alugado") throw new AlojamentoOcupadoException(alojamentoId);
 
-            if (alojamento.Estado == "Disponivel" || alojamento.Estado == "Reservado")
-            {
-                // Atualiza Estado do Alojamento para Alugado
-                Alojamento.AtualizarEstado(alojamentoId, "Alugado");
-                return Registo.InsereRegisto(alojamentoId, cliente.Id);
-            }
-
-            return false;
+            Alojamento.AtualizarEstado(alojamentoId, "Alugado");
+            return Registo.InsereRegisto(alojamentoId, cliente.Id);
         }
 
         // Efetuar Check-out: Alugado -> Disponivel E finaliza Registo

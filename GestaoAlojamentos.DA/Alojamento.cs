@@ -76,7 +76,14 @@ namespace GestaoAlojamentos.DA
         // Método DA para procurar Alojamento por Id
         public static Alojamento ProcurarPorId(int id)
         {
-            return alojamentos.FirstOrDefault(a => a.AlojamentoId == id);
+            foreach (Alojamento a in alojamentos)
+            {
+                if (a.AlojamentoId == id)
+                {
+                    return a;
+                }
+            }
+            return null; // Caso não encontre nenhum alojamento com esse ID
         }
 
         // Método DA para atualizar o estado do Alojamento

@@ -80,7 +80,14 @@ namespace GestaoAlojamentos.DA
 
         public static bool ExisteClientePorNif(string nif)
         {
-            return clientes.Any(c => c.NIF == nif); // Usar Contains diretamente aqui não é eficaz(REVER)
+            foreach (Cliente c in clientes)
+            {
+                if (c.NIF == nif)
+                {
+                    return true; // Encontrou, logo existe
+                }
+            }
+            return false; // Percorreu tudo e não encontrou
         }
 
         /**
@@ -92,7 +99,17 @@ namespace GestaoAlojamentos.DA
 
         public static Cliente ProcurarClientePorNif(string nif)
         {
-            return clientes.FirstOrDefault(c => c.NIF == nif); //(REVER)
+            foreach (Cliente c in clientes)
+            {
+                if (c.NIF == nif)
+                {
+                    // Se encontrou, retorna o objeto Cliente imediatamente
+                    return c;
+                }
+            }
+
+            // Se o ciclo terminar e não encontrar nada, retorna null
+            return null;
         }
 
         /**

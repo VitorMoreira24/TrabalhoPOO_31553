@@ -40,7 +40,7 @@ namespace GestaoAlojamentos.BO
         {
             if (nif?.Length != 9 || Pessoas.ExisteClientePorNif(nif)) return false;
 
-            // Criamos o objeto temporário Cliente apenas para inserção no DA
+            // Criar objeto temporário Cliente apenas para inserção no DA
             var novoCliente = new Cliente(0, nome, nif);
 
             return Pessoas.InsereCliente(novoCliente);

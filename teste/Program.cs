@@ -40,34 +40,43 @@ namespace GestaoAlojamentos.App
             // Chama a funcao do Controlador para obter a lista de alojamentos disponiveis
             var disponiveis = controller.MostrarDisponiveis();
 
-            // Mostra os alojamentos disponiveis (REVER)
-            disponiveis.ForEach(a => Console.WriteLine($"-> ID: {a.AlojamentoId}, Tipo: {a.Tipo}"));
-
-            int idParaCheckIn = disponiveis.First().AlojamentoId; // Usamos o primeiro disponível
-
-            // 3. EFETUAR CHECK-IN
-            Console.WriteLine($"\nPROCESSAR CHECK-IN para o Alojamento ID {idParaCheckIn}:");
-
-            // Chama a funcao do Controlador para processar o check-in
-            if (controller.ProcessarCheckIn(idParaCheckIn, "999888777"))
+            // Mostra os alojamentos disponiveis
+            foreach (var a in disponiveis)
             {
-                Console.WriteLine($"-> Check-in efetuado com sucesso! Alojamento {idParaCheckIn} está agora Alugado.");
+                Console.WriteLine($"-> ID: {a.AlojamentoId}, Tipo: {a.Tipo}");
+            }
+
+            if (disponiveis.Count > 0)
+            {
+                int idParaCheckIn = disponiveis[0].AlojamentoId;
+
+                // 3. EFETUAR CHECK-IN
+                Console.WriteLine($"\nPROCESSAR CHECK-IN para o Alojamento ID {idParaCheckIn}:");
+
+                if (controller.ProcessarCheckIn(idParaCheckIn, "999888777"))
+                {
+                    Console.WriteLine($"-> Check-in efetuado com sucesso! Alojamento {idParaCheckIn} está agora Alugado.");
+                }
+                else
+                {
+                    Console.WriteLine($"-> ERRO ao efetuar Check-in (Verifique o estado ou NIF).");
+                }
+
+                // 4. EFETUAR CHECK-OUT
+                Console.WriteLine($"\nPROCESSAR CHECK-OUT para o Alojamento ID {idParaCheckIn}:");
+
+                if (controller.ProcessarCheckOut(idParaCheckIn))
+                {
+                    Console.WriteLine($"-> Check-out efetuado com sucesso! Alojamento {idParaCheckIn} está novamente Disponivel.");
+                }
             }
             else
             {
-                Console.WriteLine($"-> ERRO ao efetuar Check-in (Verifique o estado ou NIF).");
-            }
-
-            // 4. EFETUAR CHECK-OUT
-            Console.WriteLine($"\nPROCESSAR CHECK-OUT para o Alojamento ID {idParaCheckIn}:");
-
-            // Chama a funcao do Controlador para processar o check-out
-            if (controller.ProcessarCheckOut(idParaCheckIn))
-            {
-                Console.WriteLine($"-> Check-out efetuado com sucesso! Alojamento {idParaCheckIn} está novamente Disponivel.");
+                Console.WriteLine("\nNão existem alojamentos disponíveis para simular Check-in.");
             }
 
             Console.WriteLine("\nFim da simulação.");
+            Console.ReadKey(); 
         }
     }
 }

@@ -32,13 +32,29 @@ namespace GestaoAlojamentos.BO
         // Consultar Alojamentos Disponiveis
         public List<Alojamento> ConsultarDisponiveis()
         {
-            return Alojamento.Alojamentos.Where(a => a.Estado == "Disponivel").ToList();
+            List<Alojamento> disponiveis = new List<Alojamento>();
+            foreach (Alojamento a in Hotel.GetInstancia().Alojamentos)
+            {
+                if (a.Estado == "Disponivel")
+                {
+                    disponiveis.Add(a);
+                }
+            }
+            return disponiveis;
         }
 
         // Consultar Alojamentos Reservados
         public List<Alojamento> ConsultarReservados()
         {
-            return Alojamento.Alojamentos.Where(a => a.Estado == "Reservado").ToList();
+            List<Alojamento> reservados = new List<Alojamento>();
+            foreach (Alojamento a in Hotel.GetInstancia().Alojamentos)
+            {
+                if (a.Estado == "Reservado")
+                {
+                    reservados.Add(a);
+                }
+            }
+            return reservados;
         }
 
         // Procurar Cliente por NIF
@@ -50,7 +66,16 @@ namespace GestaoAlojamentos.BO
         // Consultar Registos Abertos que ainda nao foram finalizados Alugado -> Disponivel
         public List<Registo> ConsultarRegistosAbertos()
         {
-            return Registo.Registos.Where(r => r.DataCheckOut == null).ToList();
+            List<Registo> abertos = new List<Registo>();
+            foreach (Registo r in Registo.Registos)
+            {
+                // Verifica se a data de checkout é nula (registo ainda não finalizado)
+                if (r.DataCheckOut == null)
+                {
+                    abertos.Add(r);
+                }
+            }
+            return abertos;
         }
 
         #endregion

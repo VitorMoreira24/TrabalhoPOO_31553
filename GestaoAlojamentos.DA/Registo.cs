@@ -82,10 +82,24 @@ namespace GestaoAlojamentos.DA
         }
         public static bool FinalizarRegisto(int alojamentoId)
         {
-            var registo = registos.FirstOrDefault(r => r.alojamentoId == alojamentoId && r.dataCheckOut == null);//(REVER)
-            if (registo == null) return false;
+            Registo registoEncontrado = null;
 
-            registo.dataCheckOut = DateTime.Now;
+            foreach (Registo r in registos)
+            {
+                // Procurar o registo que corresponde ao alojamento e que ainda esteja aberto (CheckOut null)
+                if (r.alojamentoId == alojamentoId && r.dataCheckOut == null)
+                {
+                    registoEncontrado = r;
+                    break; // Encontramos o que queríamos, podemos parar o ciclo
+                }
+            }
+
+            if (registoEncontrado == null)
+            {
+                return false;
+            }
+
+            registoEncontrado.dataCheckOut = DateTime.Now;
             return true;
         }
         #endregion

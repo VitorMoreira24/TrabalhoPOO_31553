@@ -45,6 +45,7 @@ namespace GestaoAlojamentos.DA
          * @param clienteId - Identificador do cliente
          * @param dataCheckIn - Define a data de check-in como a data atual
          */
+        public Registo() { }
 
         public Registo(int id, int alojamentoId, int clienteId)
         {

@@ -37,6 +37,8 @@ namespace GestaoAlojamentos.DA
          * @param string tipo Tipo do Alojamento
          * @param string estadoInicial Estado Inicial do Alojamento
          */
+
+        public Alojamento() { }
         public Alojamento(int id, string tipo, string estadoInicial)
         {
             this.alojamentoId = id;
@@ -47,8 +49,9 @@ namespace GestaoAlojamentos.DA
         // Inicialização Estática para adicionar alguns alojamentos iniciais
         static Alojamento()
         {
-            alojamentos.Add(new Alojamento(101, "Quarto Duplo", "Disponivel"));
-            alojamentos.Add(new Alojamento(102, "Suite Executiva", "Reservado"));
+            alojamentos.Add(new Alojamento(101, "Quarto Simples", "Disponivel"));
+            alojamentos.Add(new Alojamento(102, "Quarto Duplo", "Disponivel"));
+            alojamentos.Add(new Alojamento(103, "Suite Executiva", "Reservado"));
         }
         #endregion
 

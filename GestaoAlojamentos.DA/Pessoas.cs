@@ -36,7 +36,7 @@ namespace GestaoAlojamentos.DA
          * @param id Identificador único da Pessoa
          * @param nome Nome da Pessoa
          */
-
+        public Pessoas() { }
         public Pessoas(int id, string nome)
         {
             this.id = id;
@@ -49,6 +49,7 @@ namespace GestaoAlojamentos.DA
         static Pessoas()
         {
             clientes.Add(new Cliente(nextClienteId++, "Ana Maria", "111222333"));
+            clientes.Add(new Cliente(nextClienteId++, "Roberto Andrade", "111222444"));
         }
         #endregion
 

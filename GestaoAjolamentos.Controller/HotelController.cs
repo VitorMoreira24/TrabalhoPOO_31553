@@ -59,5 +59,17 @@ namespace GestaoAlojamentos.Controller
         {
             return servicoCheckIn.EfetuarCheckOut(alojamentoId);
         }
+
+        //Guardar Dados
+        public bool GuardarDados()
+        {
+            return GereDados.GravarDados();
+        }
+
+        //Carregar Dados
+        public bool CarregarDados()
+        {
+            return GereDados.CarregarDados();
+        }
     }
 }

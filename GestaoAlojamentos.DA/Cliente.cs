@@ -31,6 +31,7 @@ namespace GestaoAlojamentos.DA
          * @param string nome Nome do Cliente
          * @param string nif NIF do Cliente
          */
+        public Cliente() { }
 
         public Cliente(int id, string nome, string nif) : base(id, nome)
         {

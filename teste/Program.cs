@@ -7,6 +7,7 @@
 
 // Importa o namespace do Controller
 using GestaoAlojamentos.Controller;
+using GestaoAlojamentos.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,29 @@ namespace GestaoAlojamentos.App
             // Instancia o controlador do hotel
             var controller = new HotelController();
 
+
+            //carregar dados com json pois a .net 8 removeu o binaryformatter
+            // Tentar carregar os dados do ficheiro JSON
+            try
+            {
+                if (controller.CarregarDados())
+                {
+                    Console.WriteLine("-> Dados carregados com sucesso.");
+                }
+            }
+            catch (FicheiroNaoEncontradoException)
+            {
+                // Não é um erro crítico, apenas significa que é a primeira vez que corre
+                Console.WriteLine("-> Ficheiro não encontrado. A iniciar sistema vazio.");
+            }
+            catch (ErroDerivadoException ex)
+            {
+                // Erro real (ex: ficheiro corrompido)
+                Console.WriteLine($"-> Erro ao carregar dados: {ex.Message}");
+            }
+
+            //Inicia o procedimento normal
+
             Console.WriteLine($"Bem-vindo ao sistema de gestão do {controller.GereHotel().Nome}!");
             Console.WriteLine("--------------------------------------------");
 
@@ -32,6 +56,14 @@ namespace GestaoAlojamentos.App
             if (controller.RegistarCliente("Carlos Santos", "999888777"))
             {
                 Console.WriteLine("-> Cliente registado com sucesso.");
+                try
+                {
+                    controller.GuardarDados(); // Grava após alteração
+                }
+                catch (ErroDerivadoException ex)
+                {
+                    Console.WriteLine($"-> Erro ao guardar: {ex.Message}");
+                }
             }
 
             // 2. CONSULTAR DISPONIBILIDADE
@@ -56,6 +88,14 @@ namespace GestaoAlojamentos.App
                 if (controller.ProcessarCheckIn(idParaCheckIn, "999888777"))
                 {
                     Console.WriteLine($"-> Check-in efetuado com sucesso! Alojamento {idParaCheckIn} está agora Alugado.");
+                    try
+                    {
+                        controller.GuardarDados(); // Grava após alteração
+                    }
+                    catch (ErroDerivadoException ex)
+                    {
+                        Console.WriteLine($"-> Erro ao guardar: {ex.Message}");
+                    }
                 }
                 else
                 {
@@ -68,14 +108,22 @@ namespace GestaoAlojamentos.App
                 if (controller.ProcessarCheckOut(idParaCheckIn))
                 {
                     Console.WriteLine($"-> Check-out efetuado com sucesso! Alojamento {idParaCheckIn} está novamente Disponivel.");
+                    try
+                    {
+                        controller.GuardarDados(); // Grava após alteração
+                    }
+                    catch (ErroDerivadoException ex)
+                    {
+                        Console.WriteLine($"-> Erro ao guardar: {ex.Message}");
+                    }
                 }
             }
             else
             {
-                Console.WriteLine("\nNão existem alojamentos disponíveis para simular Check-in.");
+                Console.WriteLine("\nNão existem alojamentos disponíveis para Check-in.");
             }
 
-            Console.WriteLine("\nFim da simulação.");
+            Console.WriteLine("\nEncerrando...");
             Console.ReadKey(); 
         }
     }
